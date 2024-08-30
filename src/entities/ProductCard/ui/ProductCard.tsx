@@ -17,7 +17,7 @@ export const ProductCard = ({
   name,
   price,
   variant = "default",
-  discount = 20,
+  discount = 85,
   ...props
 }: IProps) => {
   const currentPrice = discount > 0 ? price - (price / 100) * discount : price;
@@ -37,6 +37,9 @@ export const ProductCard = ({
           {isDiscount && <s className={styles.discount}>{price} ₽</s>}
           <p className={styles.priceNumber}>{currentPrice} ₽</p> за 1 мл
         </p>
+      </div>
+
+      <div className={styles.btnWrapper}>
         <Button variant="success" className={styles.button}>
           В корзину
         </Button>
