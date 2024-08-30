@@ -1,0 +1,38 @@
+@use "sass:map";
+
+@mixin media-from-to($from, $to) {
+  $delta: 0.1;
+  @media (min-width: $from + px) and (max-width: $to - $delta + px) {
+    @content;
+  }
+}
+
+// Media-queries breakpoints
+$breakpoints: (
+  mobile-narrow: 414,
+  mobile: 670,
+  mobile-wide: 768,
+  tablet: 900,
+  tablet-wide: 1100,
+  desktop: 1280,
+);
+
+@mixin breakpoint($point, $type: max) {
+  $delta: 0;
+  @if $type == max {
+    $delta: 0.1;
+  }
+
+  @if type-of($point) == number {
+    @media (#{$type}-width: $point - $delta + px) {
+      @content;
+    }
+  } @else {
+    $breakpoint: map.get($breakpoints, #{$point});
+    $breakpointValue: $breakpoint - $delta + px;
+
+    @media (#{$type}-width: $breakpointValue) {
+      @content;
+    }
+  }
+}

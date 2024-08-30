@@ -1,0 +1,11 @@
+body {
+  color: $main-black;
+  font-weight: 400;
+  background: $main-grey-light;
+}
+
+body,
+button,
+input {
+  font-family: $main-text;
+}
