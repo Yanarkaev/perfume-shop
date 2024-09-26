@@ -1,0 +1,102 @@
+.ProductCard {
+  max-width: 220px;
+  width: 100%;
+  background-color: $white;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.accentMarks {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  max-width: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.mark {
+  background-color: $alert;
+  padding: 2px 4px;
+  color: $white;
+  width: 100%;
+  text-align: center;
+  font-size: $fs-xs;
+
+  &:last-of-type {
+    border-radius: 0 0 0 4px;
+  }
+}
+
+.discountMark {
+  background-color: $warning;
+}
+
+.hitMark {
+  background-color: $alert;
+}
+
+.newMark {
+  background-color: $success;
+}
+.img {
+  width: 100%;
+  height: 100%;
+  height: 250px;
+  margin: 0 auto;
+  border-bottom: 1px solid $main-grey-light;
+}
+
+.img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info {
+  padding: 10px;
+}
+
+// $fs-x: 12px;
+// $fs-xs: 14px;
+// $fs-l: 18px;
+// $fs-m: 20px;
+// $fs-xl: 24px;
+// $fs-xxl: 28px;
+// $fs-xxxl: 32px;
+// $fs-extra: 42px;
+
+.discount {
+  font-size: $fs-xs;
+  color: $main-grey;
+}
+
+.brand {
+  font-size: $fs-m;
+  text-align: center;
+}
+
+.name {
+  margin-top: 8px;
+  text-align: center;
+  font-size: $fs-l;
+}
+
+.price {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.priceNumber {
+  font-size: $fs-xl;
+  color: rgb(0, 0, 0);
+}
+
+.btnWrapper {
+  margin-top: auto;
+  padding: 10px;
+}

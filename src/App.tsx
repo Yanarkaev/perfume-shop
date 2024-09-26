@@ -1,11 +1,9 @@
-import { MainPage } from "./pages/MainPage";
-import { Navbar } from "./widgets/Navbar";
+import { Routing } from "./pages/Routing/Routing";
 
 function App() {
   return (
     <>
-      <Navbar />
-      <MainPage />
+      <Routing />
     </>
   );
 }
