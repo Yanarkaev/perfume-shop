@@ -8,8 +8,19 @@ export interface ProductListData {
   list: Product[];
 }
 
+export interface ProductListFilters {
+  name?: string;
+  categoryIds?: string[];
+  priceMin?: number;
+  priceMax?: number;
+  brandId?: string;
+}
+
 export interface ProductListSchema {
   data: ProductListData | null;
   isLoading: boolean;
   error: string | undefined;
+  page: number;
+  limit: number;
+  filters: ProductListFilters;
 }

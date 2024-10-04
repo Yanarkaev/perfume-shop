@@ -1,0 +1,14 @@
+.ProductListPage {
+  margin-top: $header-indent;
+}
+
+.wrapper {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.productListWrapper{
+    width: 80%;
+}

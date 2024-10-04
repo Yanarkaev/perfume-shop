@@ -1,7 +1,8 @@
 import { api, endpoints } from ".";
+import { ProductListFilters } from "../../pages/ProductListPage/model/types/productListSchema";
 
-export const getProductList = () => {
-  return api.get(endpoints.perfumes.list);
+export const getProductList = (data: ProductListFilters) => {
+  return api.get(endpoints.perfumes.list(data));
 };
 
 export const getDiscountProductList = () => {
@@ -13,6 +14,5 @@ export const getNewsProductList = () => {
 };
 
 export const getHitsProductList = () => {
-    return api.get(endpoints.perfumes.hits);
-  };
-  
+  return api.get(endpoints.perfumes.hits);
+};

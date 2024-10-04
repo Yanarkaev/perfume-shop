@@ -1,0 +1,10 @@
+.ProductList {
+  background-color: $white;
+  padding: 10px;
+  border-radius: 8px;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}

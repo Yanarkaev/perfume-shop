@@ -4,18 +4,18 @@ import {
   Action,
   ThunkDispatch,
 } from "@reduxjs/toolkit";
-import { productListReducer } from "../../../entities/Product/model/slice/productListSlice";
+import { productListReducer } from "../../../pages/ProductListPage/model/slice/productListSlice";
 import { StateSchema, ThunkExtraArg } from "./config";
-import { hitsProductListReducer } from "../../../widgets/MainPageProductList/model/slice/hitsProductListSlice";
-import { newsProductListReducer } from "../../../widgets/MainPageProductList/model/slice/newsProductListSlice";
-import { discountProductListReducer } from "../../../widgets/MainPageProductList/model/slice/discountProductListSlice";
+import { hitsProductListReducer } from "../../../pages/MainPage/model/slice/hitsProductListSlice";
+import { newsProductListReducer } from "../../../pages/MainPage/model/slice/newsProductListSlice";
+import { discountProductListReducer } from "../../../pages/MainPage/model/slice/discountProductListSlice";
 
 export const store = configureStore({
   reducer: {
     productList: productListReducer,
     hitsProductList: hitsProductListReducer,
     newsProductList: newsProductListReducer,
-    discountProductList: discountProductListReducer
+    discountProductList: discountProductListReducer,
   },
 });
 

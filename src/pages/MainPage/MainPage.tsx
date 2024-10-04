@@ -1,5 +1,5 @@
-import { MainPageProductsList } from "../../widgets/MainPageProductList";
 import { Intro } from "./ui/Intro/Intro";
+import { MainPageProductsList } from "./ui/MainPageProductList/MainPageProductsList";
 
 const MainPage = () => {
   return (

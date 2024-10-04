@@ -1,6 +1,10 @@
+import { ProductListFilters } from "../../pages/ProductListPage/model/types/productListSchema";
+import { buildUrlParams } from "../helpers/buildUrlParams";
+
 export const endpoints = {
   perfumes: {
-    list: `/perfumes`,
+    list: (params: ProductListFilters) =>
+      buildUrlParams<ProductListFilters>("/perfumes", params),
     byId: (id: string) => `/perfumes/perfume/${id}`,
     news: `/perfumes/news`,
     hits: `/perfumes/hits`,

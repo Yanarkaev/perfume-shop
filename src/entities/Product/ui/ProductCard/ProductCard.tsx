@@ -1,19 +1,19 @@
 import clsx from "clsx";
 import styles from "./ProductCard.module.scss";
-import { Product } from "../../model/types/productProps";
+import { ProductProps } from "../../model/types/productSchema";
 import { AddToCart } from "../../../../features/addToCart";
 
 export const ProductCard = ({
   img,
   brand,
   name,
-  price,
+  price = 0,
   variant = "default",
   discount = 0,
   is_hit,
   is_new,
   ...props
-}: Product) => {
+}: ProductProps) => {
   const currentPrice = discount > 0 ? price - (price / 100) * discount : price;
   const isDiscount = currentPrice !== price;
 
@@ -26,9 +26,7 @@ export const ProductCard = ({
           </div>
         )}
         {is_hit && (
-          <div className={clsx(styles.mark, styles.hitMark)}>
-            {"Hit"}
-          </div>
+          <div className={clsx(styles.mark, styles.hitMark)}>{"Hit"}</div>
         )}
         {is_new && (
           <div className={clsx(styles.mark, styles.newMark)}>{"New"}</div>

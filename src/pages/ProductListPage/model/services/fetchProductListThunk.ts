@@ -1,16 +1,18 @@
-import { ProductListData } from './../types/productListSchema';
+import {
+  ProductListData,
+  ProductListFilters,
+} from "./../types/productListSchema";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ThunkConfig } from "../../../../app/providers/storeProvider/config";
 import { getProductList } from "../../../../shared/api/routes";
 
 export const fetchProductListThunk = createAsyncThunk<
   ProductListData,
-  undefined,
+  ProductListFilters,
   ThunkConfig<string>
->("productList/fetch", async (_, thunkApi) => {
-
+>("productList/fetch", async (args, thunkApi) => {
   try {
-    const response = await getProductList();
+    const response = await getProductList(args);
     return response.data;
   } catch (error) {
     console.log(error);

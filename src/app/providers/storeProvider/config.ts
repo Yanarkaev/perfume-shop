@@ -1,5 +1,5 @@
-import { SpecialProductListSchema } from "../../../widgets/MainPageProductList/model/types/specialProductList";
-import { ProductListSchema } from "./../../../entities/Product/model/types/productListSchema";
+import { SpecialProductListSchema } from "../../../pages/MainPage/model/types/specialProductList";
+import { ProductListSchema } from "./../../../pages/ProductListPage/model/types/productListSchema";
 import { AxiosInstance } from "axios";
 
 export interface StateSchema {

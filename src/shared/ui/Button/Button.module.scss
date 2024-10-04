@@ -2,6 +2,14 @@
   padding: 8px 16px;
   position: relative;
   transition: 0.2s background-color, 0.1s transform;
+
+  &:disabled{
+    background-color: $main-grey;
+
+    &:hover{
+      background-color: $main-grey;
+    }
+  }
 }
 
 .success {
@@ -15,6 +23,6 @@
   &:active{
     transform: scale(0.98);
     background-color: #018041;
-
   }
+
 }

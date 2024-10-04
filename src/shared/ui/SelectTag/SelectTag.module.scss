@@ -1,0 +1,23 @@
+.SelectTag {
+  background-color: rgb(180, 180, 180);
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  user-select: none;
+  color: $main-black;
+  display: inline-block;
+
+  &:hover {
+    background-color: rgb(154, 154, 154);
+  }
+}
+
+.checked {
+  background-color: rgb(101, 101, 101);
+  color: $white;
+
+  &:hover {
+    background-color: rgb(92, 92, 92);
+  }
+}
