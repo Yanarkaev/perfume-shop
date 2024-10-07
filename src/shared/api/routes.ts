@@ -3,6 +3,10 @@ import { ProductListFilters } from "../../pages/ProductListPage/model/types/prod
 
 // products
 
+export const getProductById = (id: string) => {
+  return api.get(endpoints.perfumes.byId(id));
+};
+
 export const getProductList = (data: ProductListFilters) => {
   return api.get(endpoints.perfumes.list(data));
 };

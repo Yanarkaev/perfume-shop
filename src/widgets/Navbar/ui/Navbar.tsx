@@ -4,8 +4,12 @@ import { menuLinks } from "../config/menuLinks";
 import { IconFavorite } from "../../../shared/icons";
 import { ReactComponent as IconCart } from "../assets/cart-icon.svg";
 import { Container } from "../../../shared/ui";
+import { useNavigate } from "react-router";
+import { CartCounter } from "./components/CartCounter/CartCounter";
 
 export const Navbar = () => {
+  const navigate = useNavigate();
+
   return (
     <header className={styles.Navbar}>
       <Container className={styles.inner}>
@@ -18,7 +22,10 @@ export const Navbar = () => {
           ))}
         </nav>
         <div className={styles.actions}>
-          <IconCart />
+          <div className={styles.cartIcon}>
+            <CartCounter />
+            <IconCart onClick={() => navigate("/cart")} />
+          </div>
           <IconFavorite />
         </div>
       </Container>

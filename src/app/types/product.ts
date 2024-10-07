@@ -13,4 +13,5 @@ export interface Product {
   is_new?: boolean;
   imageURL?: string;
   categories: Category[];
+  mlsLeft: number;
 }

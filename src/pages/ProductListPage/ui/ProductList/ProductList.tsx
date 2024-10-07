@@ -7,6 +7,7 @@ import { getProductListSelector } from "../../model/selectors/product.selector";
 import s from "./ProductList.module.scss";
 import { fetchProductListThunk } from "../../model/services/fetchProductListThunk";
 import { ProductCard } from "../../../../entities/Product";
+import { Paper } from "../../../../shared/ui";
 
 export const ProductList = () => {
   const dispatch = useAppDispatch();
@@ -17,21 +18,10 @@ export const ProductList = () => {
   }, [dispatch, productList.filters]);
 
   return (
-    <section className={s.ProductList}>
-      {productList.data?.list?.map(
-        ({ imageURL, brand, name, price, discount, is_hit, is_new, _id }) => (
-          <ProductCard
-            key={_id}
-            img={imageURL}
-            brand={brand.name}
-            name={name}
-            price={price}
-            discount={discount}
-            is_hit={is_hit}
-            is_new={is_new}
-          />
-        )
-      )}
-    </section>
+    <Paper type="section" className={s.ProductList}>
+      {productList.data?.list?.map((el) => (
+        <ProductCard key={el._id} product={el} />
+      ))}
+    </Paper>
   );
 };

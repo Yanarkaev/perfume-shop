@@ -1,7 +1,7 @@
 body {
   color: $main-black;
   font-weight: 400;
-  background: $main-grey-light;
+  background: rgb(245, 245, 245);
 }
 
 body,
@@ -9,3 +9,5 @@ button,
 input {
   font-family: $main-text;
 }
+
+

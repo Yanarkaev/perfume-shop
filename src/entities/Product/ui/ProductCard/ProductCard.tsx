@@ -2,23 +2,31 @@ import clsx from "clsx";
 import styles from "./ProductCard.module.scss";
 import { ProductProps } from "../../model/types/productSchema";
 import { AddToCart } from "../../../../features/addToCart";
+import { useNavigate } from "react-router";
 
 export const ProductCard = ({
-  img,
-  brand,
-  name,
-  price = 0,
+  product,
   variant = "default",
-  discount = 0,
-  is_hit,
-  is_new,
   ...props
 }: ProductProps) => {
+  const { imageURL, price, discount, name, brand, is_hit, is_new, _id } =
+    product;
   const isDiscount = discount > 0;
   const originalPrice = isDiscount ? price / (1 - discount / 100) : price;
+  const navigate = useNavigate();
+
+  const handleOpenProduct = (e, id: string) => {
+    if (e.target.localName !== "button") {
+      navigate(id);
+    }
+  };
 
   return (
-    <article {...props} className={clsx(styles.ProductCard, styles[variant])}>
+    <article
+      {...props}
+      className={clsx(styles.ProductCard, styles[variant])}
+      onClick={(e) => handleOpenProduct(e, _id)}
+    >
       <div className={styles.accentMarks}>
         {isDiscount && (
           <div className={clsx(styles.mark, styles.discountMark)}>
@@ -34,11 +42,11 @@ export const ProductCard = ({
       </div>
 
       <div className={styles.img}>
-        <img src={img} alt={`${brand} ${name}`} />
+        <img src={imageURL} alt={`${brand} ${name}`} />
       </div>
 
       <div className={styles.info}>
-        <div className={styles.brand}>{brand}</div>
+        <div className={styles.brand}>{brand.name}</div>
         <div className={styles.name}>{name}</div>
         <div className={styles.price}>
           {isDiscount && <s className={styles.discount}>{originalPrice} ₽</s>}
@@ -47,7 +55,7 @@ export const ProductCard = ({
       </div>
 
       <div className={styles.btnWrapper}>
-        <AddToCart />
+        <AddToCart product={product} />
       </div>
     </article>
   );

@@ -8,7 +8,7 @@ interface IProps
   > {
   children: React.ReactNode;
   className?: string;
-  variant?: "success" | "warning" | "disabled" | "primary";
+  variant?: "success" | "warning" | "disabled" | "primary" | "outlined";
 }
 
 export const Button = ({
@@ -19,7 +19,7 @@ export const Button = ({
 }: IProps) => {
   return (
     <button
-      className={clsx(className, styles.Button, styles[variant])}
+      className={clsx(styles.Button, className, styles[variant])}
       {...props}
     >
       {children}

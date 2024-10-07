@@ -11,6 +11,8 @@ import { newsProductListReducer } from "../../../pages/MainPage/model/slice/news
 import { discountProductListReducer } from "../../../pages/MainPage/model/slice/discountProductListSlice";
 import { categoryListReducer } from "../../../features/ProductListFilter/model/slice/categoryListSlice";
 import { brandListReducer } from "../../../features/ProductListFilter/model/slice/brandListSlice";
+import { cartReducer } from "../../../entities/Cart/model/slice/cartSlice";
+import { productByIdReducer } from "../../../pages/ProductPage/model/slice/productByIdSlice";
 
 export const store = configureStore({
   reducer: {
@@ -20,6 +22,8 @@ export const store = configureStore({
     discountProductList: discountProductListReducer,
     categoryList: categoryListReducer,
     brandList: brandListReducer,
+    cart: cartReducer,
+    productById: productByIdReducer,
   },
 });
 

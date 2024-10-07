@@ -26,3 +26,16 @@
   }
 
 }
+
+.outlined{
+  border: 2px solid $main-black;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: #d3d3d3;
+  }
+
+  &:active{
+    background-color: #bababa;
+  }
+}

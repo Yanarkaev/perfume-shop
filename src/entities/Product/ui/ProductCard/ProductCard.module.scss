@@ -6,6 +6,14 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  
+  cursor: pointer;
+  transition: 0.2s box-shadow;
+  border-radius: 4px;
+
+  &:hover{
+    box-shadow: 0 0 10px 0 rgba(213, 213, 213, 0.95);
+  }
 }
 
 .accentMarks {

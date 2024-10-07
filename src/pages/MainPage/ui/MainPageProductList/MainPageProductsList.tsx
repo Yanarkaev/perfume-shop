@@ -30,7 +30,6 @@ export const MainPageProductsList = () => {
     dispatch(fetchNewsProductListThunk());
   }, [dispatch]);
 
-
   const [state, setState] = useState(false);
 
   return (
@@ -45,18 +44,7 @@ export const MainPageProductsList = () => {
 
         <HorizontalList>
           {discountProductListSelector.data?.map((item) => {
-            return (
-              <ProductCard
-                key={item._id}
-                img={item.imageURL || ""}
-                brand={item.brand.name}
-                name={item.name}
-                price={item.price}
-                discount={item.discount}
-                is_hit={item.is_hit}
-                is_new={item.is_new}
-              />
-            );
+            return <ProductCard key={item._id} product={item} />;
           })}
         </HorizontalList>
 
@@ -64,18 +52,7 @@ export const MainPageProductsList = () => {
 
         <HorizontalList>
           {newsProductListSelector.data?.map((item) => {
-            return (
-              <ProductCard
-                key={item._id}
-                img={item.imageURL || ""}
-                brand={item.brand.name}
-                name={item.name}
-                price={item.price}
-                discount={item.discount}
-                is_hit={item.is_hit}
-                is_new={item.is_new}
-              />
-            );
+            return <ProductCard key={item._id} product={item} />;
           })}
         </HorizontalList>
 
@@ -83,18 +60,7 @@ export const MainPageProductsList = () => {
 
         <HorizontalList>
           {hitsProductListSelector.data?.map((item) => {
-            return (
-              <ProductCard
-                key={item._id}
-                img={item.imageURL || ""}
-                brand={item.brand.name}
-                name={item.name}
-                price={item.price}
-                discount={item.discount}
-                is_hit={item.is_hit}
-                is_new={item.is_new}
-              />
-            );
+            return <ProductCard key={item._id} product={item} />;
           })}
         </HorizontalList>
       </section>

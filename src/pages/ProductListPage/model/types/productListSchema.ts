@@ -11,8 +11,8 @@ export interface ProductListData {
 export interface ProductListFilters {
   name?: string;
   categoryIds?: string[];
-  priceMin?: number;
-  priceMax?: number;
+  priceMin?: string;
+  priceMax?: string;
   brandIds?: string[];
 }
 

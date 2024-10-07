@@ -3,7 +3,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "../../app/providers/storeProvider/hooks";
-import { Button, Input, SelectTag } from "../../shared/ui";
+import { Button, Input, Paper, SelectTag } from "../../shared/ui";
 import s from "./ProductListFilter.module.scss";
 import { fetchBrandListThunk } from "./model/services/fetchBrandListThunk";
 import { fetchCategoryListThunk } from "./model/services/fetchCategoryListThunk";
@@ -21,7 +21,10 @@ export const ProductListFilter = () => {
   const categoryList = useAppSelector(getCategoryListSelector);
   const productListSelector = useAppSelector(getProductListSelector);
 
-  const [filters, setFilters] = useState<ProductListFilters>({});
+  const [filters, setFilters] = useState<ProductListFilters>({
+    priceMax: "",
+    priceMin: "",
+  });
 
   useEffect(() => {
     dispatch(fetchBrandListThunk());
@@ -61,11 +64,10 @@ export const ProductListFilter = () => {
         ...productListSelector.filters,
         ...filters,
         name: productListSelector.searchValue,
-        priceMin: Number(filters.priceMin) || undefined,
-        priceMax: Number(filters.priceMax) || undefined
+        priceMin: filters.priceMin || undefined,
+        priceMax: filters.priceMax || undefined,
       })
     );
-
   };
 
   const countProductsOfBrands = (id: string): number | undefined => {
@@ -73,15 +75,14 @@ export const ProductListFilter = () => {
       .length;
   };
 
-  console.log(productListSelector.filters)
-
+  console.log(productListSelector.filters);
 
   // const countProductsOfCategories = (id: string): number | undefined => {
   //   return productListSelector.data?.list.filter((el) => el.categories).length
   // }
 
   return (
-    <div className={s.ProductListFilter}>
+    <Paper className={s.ProductListFilter}>
       <div className={s.filterTitile}>Цена</div>
       <div className={s.pricesRange}>
         <Input
@@ -127,6 +128,6 @@ export const ProductListFilter = () => {
       <Button className={s.btn} onClick={handleSetQueryFilters}>
         Поиск
       </Button>
-    </div>
+    </Paper>
   );
 };
