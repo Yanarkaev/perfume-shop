@@ -6,7 +6,10 @@
   cursor: pointer;
   user-select: none;
   color: $main-black;
-  display: inline-block;
+  display: flex;
+  font-size: $fs-xs;
+  justify-content: center;
+  gap: 5px;
 
   &:hover {
     background-color: rgb(154, 154, 154);
@@ -17,7 +20,23 @@
   background-color: rgb(101, 101, 101);
   color: $white;
 
+
+
   &:hover {
     background-color: rgb(92, 92, 92);
   }
+}
+
+.counter{
+  font-size: $fs-x;
+  background-color: $main-grey-light;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 0;
+  color: $main-black;
+
 }

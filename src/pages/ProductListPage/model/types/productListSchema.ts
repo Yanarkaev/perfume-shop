@@ -13,7 +13,7 @@ export interface ProductListFilters {
   categoryIds?: string[];
   priceMin?: number;
   priceMax?: number;
-  brandId?: string;
+  brandIds?: string[];
 }
 
 export interface ProductListSchema {
@@ -23,4 +23,5 @@ export interface ProductListSchema {
   page: number;
   limit: number;
   filters: ProductListFilters;
+  searchValue: string
 }

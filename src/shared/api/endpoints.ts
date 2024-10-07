@@ -14,6 +14,14 @@ export const endpoints = {
     byBrand: (id: string) => `/perfumes/brand/${id}`, //Нужно написать на бэке
   },
 
+  brand: {
+    list: `/brand`,
+  },
+
+  categories: {
+    list: `/categories`,
+  },
+
   auth: {
     //
   },

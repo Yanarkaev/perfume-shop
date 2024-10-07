@@ -18,19 +18,18 @@ export const ProductList = () => {
 
   return (
     <section className={s.ProductList}>
-      {productList.data?.list.map(
-        ({ imageURL, brand, name, price, discount, is_hit, is_new }) => (
-          <div>
-            <ProductCard
-              img={imageURL}
-              brand={brand.name}
-              name={name}
-              price={price}
-              discount={discount}
-              is_hit={is_hit}
-              is_new={is_new}
-            />
-          </div>
+      {productList.data?.list?.map(
+        ({ imageURL, brand, name, price, discount, is_hit, is_new, _id }) => (
+          <ProductCard
+            key={_id}
+            img={imageURL}
+            brand={brand.name}
+            name={name}
+            price={price}
+            discount={discount}
+            is_hit={is_hit}
+            is_new={is_new}
+          />
         )
       )}
     </section>

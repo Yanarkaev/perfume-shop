@@ -30,7 +30,6 @@ export const MainPageProductsList = () => {
     dispatch(fetchNewsProductListThunk());
   }, [dispatch]);
 
-  console.log(discountProductListSelector);
 
   const [state, setState] = useState(false);
 

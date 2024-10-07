@@ -9,6 +9,8 @@ import { StateSchema, ThunkExtraArg } from "./config";
 import { hitsProductListReducer } from "../../../pages/MainPage/model/slice/hitsProductListSlice";
 import { newsProductListReducer } from "../../../pages/MainPage/model/slice/newsProductListSlice";
 import { discountProductListReducer } from "../../../pages/MainPage/model/slice/discountProductListSlice";
+import { categoryListReducer } from "../../../features/ProductListFilter/model/slice/categoryListSlice";
+import { brandListReducer } from "../../../features/ProductListFilter/model/slice/brandListSlice";
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +18,8 @@ export const store = configureStore({
     hitsProductList: hitsProductListReducer,
     newsProductList: newsProductListReducer,
     discountProductList: discountProductListReducer,
+    categoryList: categoryListReducer,
+    brandList: brandListReducer,
   },
 });
 

@@ -7,7 +7,6 @@ interface IProps
     React.InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > {
-  value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   className?: string;
   variant?: "default";

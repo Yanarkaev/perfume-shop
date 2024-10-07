@@ -4,11 +4,12 @@
 
 .wrapper {
   display: flex;
-  gap: 30px;
+  gap: 20px;
   justify-content: center;
+  align-items: start;
   margin-top: 40px;
 }
 
 .productListWrapper{
-    width: 80%;
+    width: 100%;
 }

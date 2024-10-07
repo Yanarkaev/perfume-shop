@@ -7,12 +7,14 @@ interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
   text: string;
   selected?: boolean;
+  counter?: number;
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 export const SelectTag = ({
   text = "",
   selected = false,
+  counter,
   className,
   onClick = () => {},
 }: IProps) => {
@@ -22,7 +24,7 @@ export const SelectTag = ({
       onClick={onClick}
     >
       {text}
-      {/* {selected && <CheckMarkIcon />} */}
+      {counter !== undefined && <span className={s.counter}>{counter}</span>}
     </div>
   );
 };

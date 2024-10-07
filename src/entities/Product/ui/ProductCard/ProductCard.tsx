@@ -14,8 +14,8 @@ export const ProductCard = ({
   is_new,
   ...props
 }: ProductProps) => {
-  const currentPrice = discount > 0 ? price - (price / 100) * discount : price;
-  const isDiscount = currentPrice !== price;
+  const isDiscount = discount > 0;
+  const originalPrice = isDiscount ? price / (1 - discount / 100) : price;
 
   return (
     <article {...props} className={clsx(styles.ProductCard, styles[variant])}>
@@ -41,8 +41,8 @@ export const ProductCard = ({
         <div className={styles.brand}>{brand}</div>
         <div className={styles.name}>{name}</div>
         <div className={styles.price}>
-          {isDiscount && <s className={styles.discount}>{price} ₽</s>}
-          <p className={styles.priceNumber}>{currentPrice} ₽</p> за 1 мл
+          {isDiscount && <s className={styles.discount}>{originalPrice} ₽</s>}
+          <p className={styles.priceNumber}>{price} ₽</p> за 1 мл
         </div>
       </div>
 

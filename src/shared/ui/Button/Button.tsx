@@ -14,7 +14,7 @@ interface IProps
 export const Button = ({
   children,
   className = "",
-  variant = "primary",
+  variant = "success",
   ...props
 }: IProps) => {
   return (

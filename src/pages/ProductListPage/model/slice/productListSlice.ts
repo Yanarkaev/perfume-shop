@@ -13,12 +13,16 @@ const initialState: ProductListSchema = {
   page: 1,
   limit: 15,
   filters: {},
+  searchValue: "",
 };
 
 export const productListSlice = createSlice({
   name: "productList",
   initialState,
   reducers: {
+    setSearchValue(state, action: PayloadAction<string>) {
+      state.searchValue = action.payload;
+    },
     setFilters(state, action: PayloadAction<ProductListFilters>) {
       state.filters = action.payload;
     },
