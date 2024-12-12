@@ -2,7 +2,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "../../../app/providers/storeProvider/hooks";
-import { getCart } from "../../../entities/Cart/model/selectors/cart.selector";
+import { getCartSelector } from "../../../entities/Cart/model/selectors/cart.selector";
 import { Button } from "../../../shared/ui";
 import { AddToCartProps } from "../model/types/addToCartShema";
 import { cartActions } from "../../../entities/Cart/model/slice/cartSlice";
@@ -11,8 +11,9 @@ import styles from "./AddToCart.module.scss";
 import clsx from "clsx";
 
 export const AddToCart = ({ product }: AddToCartProps) => {
-  const cart = useAppSelector(getCart);
-  const cartPoductsIds = cart.data.reduce(
+  const cart = useAppSelector(getCartSelector);
+
+  const cartPoductsIds = cart.data.cartData.reduce(
     (acc: { [key: string]: string }, el) => {
       acc[el._id] = el._id;
       return acc;
@@ -26,13 +27,14 @@ export const AddToCart = ({ product }: AddToCartProps) => {
 
   const handleAddToCart = () => {
     if (!isInCart) {
-      dispatch(cartActions.setCartData(product));
+      dispatch(cartActions.setCartData({ ...product, count: 1 }));
+      dispatch(cartActions.setTotalSum());
     }
   };
 
   return (
     <Button
-      variant="success"
+      variant="primary"
       onClick={handleAddToCart}
       className={clsx(styles.ProductCartButton)}
       disabled={isInCart}

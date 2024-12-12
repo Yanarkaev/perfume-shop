@@ -5,3 +5,5 @@ export * from "./SelectTag/SelectTag";
 export * from "./Input/Input";
 export * from "./Title/Title";
 export * from "./Paper/Paper";
+export * from "./ProductPrice/ProductPrice";
+export * from "./OopsBlock/OopsBlock";

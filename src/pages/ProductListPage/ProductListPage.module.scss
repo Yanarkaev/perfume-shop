@@ -5,11 +5,16 @@
 .wrapper {
   display: flex;
   gap: 20px;
-  justify-content: center;
   align-items: start;
   margin-top: 40px;
 }
 
-.productListWrapper{
-    width: 100%;
+.productListWrapper {
+  width: 100%;
+}
+@media screen and (max-width: $tablet) {
+  .ProductListPage {
+    margin-top: 50px;
+  }
+  
 }

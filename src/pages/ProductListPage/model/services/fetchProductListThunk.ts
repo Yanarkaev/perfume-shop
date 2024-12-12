@@ -13,6 +13,7 @@ export const fetchProductListThunk = createAsyncThunk<
 >("productList/fetch", async (args, thunkApi) => {
   try {
     const response = await getProductList(args);
+    console.log(response.data)
     return response.data;
   } catch (error) {
     console.log(error);

@@ -25,4 +25,9 @@ export const endpoints = {
   auth: {
     //
   },
+
+  orders: {
+    list: `/orders`,
+    create: `/orders`,
+  },
 };

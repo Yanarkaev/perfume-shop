@@ -12,7 +12,7 @@ const initialState: ProductListSchema = {
   error: undefined,
   page: 1,
   limit: 15,
-  filters: {},
+  filters: JSON.parse(localStorage.getItem("filters") || "{}") || {},
   searchValue: "",
 };
 

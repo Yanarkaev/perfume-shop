@@ -1,7 +1,6 @@
 import React from "react";
 import s from "./SelectTag.module.scss";
 import clsx from "clsx";
-// import { ReactComponent as CheckMarkIcon } from "./assets/checkmark.svg";
 
 interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;

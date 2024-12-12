@@ -1,0 +1,26 @@
+.discount {
+  font-size: $fs-xs;
+  color: $main-grey;
+}
+
+.priceNumber {
+  font-size: $fs-xl;
+  color: $main-black;
+}
+
+
+@media screen and (max-width: $wide-mobile) {
+  .discount {
+    font-size: $fs-xs;
+    color: $main-grey;
+  }
+  
+  .priceNumber {
+    font-size: $fs-xl;
+    color: $main-black;
+  }
+
+  .ml{
+    font-size: $fs-xs;
+  }
+}

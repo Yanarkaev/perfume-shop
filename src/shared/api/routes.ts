@@ -1,4 +1,5 @@
 import { api, endpoints } from ".";
+import { Order } from "../../app/types/order";
 import { ProductListFilters } from "../../pages/ProductListPage/model/types/productListSchema";
 
 // products
@@ -33,4 +34,14 @@ export const getBrandList = () => {
 
 export const getCategoryList = () => {
   return api.get(endpoints.categories.list);
+};
+
+// orders
+
+export const getOrderList = () => {
+  return api.get(endpoints.orders.list);
+};
+
+export const createOrder = (data: Order) => {
+  return api.post(endpoints.orders.create, data);
 };

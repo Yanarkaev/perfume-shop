@@ -1,27 +1,17 @@
 import s from "./CartPage.module.scss";
-import { Container, Paper, Title } from "../../shared/ui";
-import { CartProductCard } from "./ui/CartProductCard/CartProductCard";
+import { Container, Title } from "../../shared/ui";
 import { useAppSelector } from "../../app/providers/storeProvider/hooks";
-import { getCart } from "../../entities/Cart/model/selectors/cart.selector";
+import { getCartSelector } from "../../entities/Cart/model/selectors/cart.selector";
+import { Cart } from "../../entities/Cart/Cart";
 
 const CartPage = () => {
-  const { data } = useAppSelector(getCart);
+
   return (
     <div className={s.CartPage}>
       <Container>
         <Title>Корзина</Title>
 
-        <div className={s.wrapper}>
-          <Paper className={s.products}>
-            {data.map((el, i) => (
-              <CartProductCard
-                key={el._id + i}
-                product={{ ...el, mlsLeft: 10 }}
-              />
-            ))}
-          </Paper>
-          <Paper className={s.orderBlock}>Заказать</Paper>
-        </div>
+        <Cart />
       </Container>
     </div>
   );

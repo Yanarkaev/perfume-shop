@@ -1,0 +1,18 @@
+.MobileNavbarLink{
+    padding: 10px 15px;
+    border-radius: 4px;
+}
+
+.active{
+    background-color: $main-black;
+}
+
+.icon{
+    stroke: $main-black;
+}
+
+.active{
+    .icon{
+        stroke: $white;
+    }
+}

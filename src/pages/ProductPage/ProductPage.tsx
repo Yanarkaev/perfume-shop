@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { Container, Paper, Title } from "../../shared/ui";
+import { Container, Paper, ProductPrice, Title } from "../../shared/ui";
 import s from "./ProductPage.module.scss";
 import {
   useAppDispatch,
@@ -18,11 +18,12 @@ const ProductPage = () => {
   useEffect(() => {
     dispatch(fetchProductByIdThunk(id || ""));
   }, [dispatch]);
+
   return (
     <div className={s.ProductPage}>
       <Container>
         <Title>
-          {data?.brand.name} / {data?.name}
+          {data?.brand.name}, {data?.name}
         </Title>
 
         <Paper className={s.productWrapper}>
@@ -47,9 +48,36 @@ const ProductPage = () => {
                 maxime, cumque fuga!
               </p>
 
+              {data && (
+                <ProductPrice className={s.price} price={data?.price} discount={data?.discount} />
+              )}
+
               <div className={s.actions}>
                 {data && <AddToCart product={data} />}
               </div>
+            </div>
+          </div>
+
+          <div className={s.properties}>
+            <div className={s.propertiesTitle}>Характеристики</div>
+
+            <div className={s.propertiesFields}>
+              <p>
+                <span>Название: </span>
+                {data?.name}
+              </p>
+              <p>
+                <span>Бренд: </span>
+                {data?.brand.name}
+              </p>
+              <p>
+                <span>Семейства: </span>
+                {data?.categories.map((el) => el.name)}
+              </p>
+              <p>
+                <span>Цена: </span>
+                {data?.price} ₽
+              </p>
             </div>
           </div>
         </Paper>

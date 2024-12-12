@@ -1,0 +1,27 @@
+.Cart{
+    margin: 40px auto 0;
+    display: flex;
+    gap: 20px;
+    align-items: start;
+    max-width: 960px;
+}
+
+.products{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px;
+}
+
+.oops{
+    margin: 0 auto;
+}
+
+@media screen and (max-width: $tablet) {
+    .Cart{
+        align-items: stretch;
+        flex-direction: column;
+    }
+}

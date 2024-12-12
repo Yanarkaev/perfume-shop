@@ -1,11 +1,11 @@
-import { Container, HorizontalList, SelectTag } from "../../../../shared/ui";
-import { ProductCard } from "../../../../entities/Product";
+import { Container, HorizontalList, Paper } from "../../../../shared/ui";
+import { ProductCard } from "../../../../entities/Product/ProductCard";
 import styles from "./MainPageProductsList.module.scss";
 import {
   useAppDispatch,
   useAppSelector,
 } from "../../../../app/providers/storeProvider/hooks";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   getDiscountProductListSelector,
   getHitsProductListSelector,
@@ -30,39 +30,68 @@ export const MainPageProductsList = () => {
     dispatch(fetchNewsProductListThunk());
   }, [dispatch]);
 
-  const [state, setState] = useState(false);
-
   return (
     <Container>
       <section className={styles.productList}>
         <Title className={styles.title}>Скидки</Title>
-        <SelectTag
-          text="Сладкие"
-          selected={state}
-          onClick={() => setState((prev) => !prev)}
-        />
 
-        <HorizontalList>
-          {discountProductListSelector.data?.map((item) => {
-            return <ProductCard key={item._id} product={item} />;
-          })}
-        </HorizontalList>
+        <Paper className={styles.section}>
+          <HorizontalList>
+            {discountProductListSelector.data?.map((item) => {
+              return <ProductCard key={item._id} product={item} />;
+            })}
+            {discountProductListSelector.data?.map((item) => {
+              return <ProductCard key={item._id} product={item} />;
+            })}
+            {discountProductListSelector.data?.map((item) => {
+              return <ProductCard key={item._id} product={item} />;
+            })}{" "}
+            {discountProductListSelector.data?.map((item) => {
+              return <ProductCard key={item._id} product={item} />;
+            })}{" "}
+            {discountProductListSelector.data?.map((item) => {
+              return <ProductCard key={item._id} product={item} />;
+            })}{" "}
+            {discountProductListSelector.data?.map((item) => {
+              return <ProductCard key={item._id} product={item} />;
+            })}{" "}
+            {discountProductListSelector.data?.map((item) => {
+              return <ProductCard key={item._id} product={item} />;
+            })}
+          </HorizontalList>
+        </Paper>
 
         <Title className={styles.title}>Новинки</Title>
 
-        <HorizontalList>
-          {newsProductListSelector.data?.map((item) => {
-            return <ProductCard key={item._id} product={item} />;
-          })}
-        </HorizontalList>
+        <Paper className={styles.section}>
+          <HorizontalList>
+            {newsProductListSelector.data?.map((item) => {
+              return <ProductCard key={item._id} product={item} />;
+            })}
+          </HorizontalList>
+        </Paper>
 
         <Title className={styles.title}>Хиты продаж</Title>
 
-        <HorizontalList>
-          {hitsProductListSelector.data?.map((item) => {
-            return <ProductCard key={item._id} product={item} />;
-          })}
-        </HorizontalList>
+        <Paper className={styles.section}>
+          <HorizontalList>
+            {hitsProductListSelector.data?.map((item) => {
+              return <ProductCard key={item._id} product={item} />;
+            })}
+            {hitsProductListSelector.data?.map((item) => {
+              return <ProductCard key={item._id} product={item} />;
+            })}
+            {hitsProductListSelector.data?.map((item) => {
+              return <ProductCard key={item._id} product={item} />;
+            })}
+            {hitsProductListSelector.data?.map((item) => {
+              return <ProductCard key={item._id} product={item} />;
+            })}
+            {hitsProductListSelector.data?.map((item) => {
+              return <ProductCard key={item._id} product={item} />;
+            })}
+          </HorizontalList>
+        </Paper>
       </section>
     </Container>
   );

@@ -1,9 +1,38 @@
 .ProductList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+  padding: 20px;
+  // background-color: red;
   // width: 100%;
   // flex: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   margin-top: 20px;
+
+  .product {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: $tablet) {
+  .ProductList {
+    gap: 30px 15px;
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: $medium-tablet) {
+  .ProductList {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+}
+
+@media screen and (max-width: $wide-mobile) {
+  .ProductList {
+    padding: 10px;
+
+    .product {
+      
+    }
+  }
 }

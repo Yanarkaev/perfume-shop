@@ -2,23 +2,8 @@
     margin-top: $header-indent;
 }
 
-.wrapper{
-    margin: 40px auto 0;
-    display: flex;
-    gap: 20px;
-    max-width: 900px;
-
-}
-
-.products{
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.orderBlock{
-    width: 100%;
-    max-width: 250px;
+@media screen and (max-width: $small-tablet) {
+    .CartPage{
+        margin-top: 50px;
+    }
 }

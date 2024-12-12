@@ -1,0 +1,44 @@
+.OrderBlock {
+  width: 100%;
+  max-width: 250px;
+  position: sticky;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sum {
+  display: flex;
+  justify-content: space-between;
+  font-size: $fs-xl;
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: $tablet) {
+  .OrderBlock {
+    width: 100%;
+    max-width: unset;
+    // position: fixed;
+    top: unset;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 0 10px 0px $shadow;
+  }
+
+  .sum {
+    justify-content: end;
+    font-size: $fs-xl;
+    margin-bottom: 20px;
+    font-size: $fs-m;
+
+    span {
+      margin-left: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: $small-tablet) {
+  .OrderBlock {
+    bottom: 80px;
+  }
+}

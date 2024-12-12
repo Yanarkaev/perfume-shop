@@ -1,13 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap");
 // colors
-$main-black: #343843;
+$main-black: #232323;
 $main-grey: #7c838f;
-$main-grey-light: #d0d4de;
+$dark: rgb(85, 85, 85);
+$main-grey-light: #bababa;
 $accent: #2fafff;
 $accent-dark: #0759af;
 $white: #fff;
 $alert: #ef2424;
 $warning: #ffb82e;
 $success: #00bc5f;
+$shadow: rgba(0, 0, 0, 0.1);
 
 // font-sizes
 $fs-x: 12px;
@@ -19,9 +22,21 @@ $fs-xxl: 28px;
 $fs-xxxl: 32px;
 $fs-extra: 42px;
 
-$main-text: "Gilroy", sans-serif;
+// $main-text: "Gilroy", sans-serif;
+// $main-text: "Playfair Display", serif;
+$main-text: "Geologica", sans-serif;
 $add-text: "Arimo", sans-serif;
 
-// 
+// adaptive
 
-$header-indent: 120px
+$laptop: 1024px;
+$tablet: 832px;
+$medium-tablet: 730px;
+$small-tablet: 630px;
+$wide-mobile: 530px;
+$mobile: 375px;
+$small-mobile: 320px;
+
+//
+
+$header-indent: 120px;

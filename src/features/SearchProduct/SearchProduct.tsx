@@ -23,6 +23,7 @@ export const SearchProduct = () => {
     e.preventDefault();
     dispatch(productListActions.setFilters({ ...filters, name: searchValue }));
   };
+  
 
   return (
     <form onSubmit={handleSubmit} className={clsx(s.SearchProduct)}>

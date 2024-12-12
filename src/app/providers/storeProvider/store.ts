@@ -9,10 +9,11 @@ import { StateSchema, ThunkExtraArg } from "./config";
 import { hitsProductListReducer } from "../../../pages/MainPage/model/slice/hitsProductListSlice";
 import { newsProductListReducer } from "../../../pages/MainPage/model/slice/newsProductListSlice";
 import { discountProductListReducer } from "../../../pages/MainPage/model/slice/discountProductListSlice";
-import { categoryListReducer } from "../../../features/ProductListFilter/model/slice/categoryListSlice";
-import { brandListReducer } from "../../../features/ProductListFilter/model/slice/brandListSlice";
 import { cartReducer } from "../../../entities/Cart/model/slice/cartSlice";
 import { productByIdReducer } from "../../../pages/ProductPage/model/slice/productByIdSlice";
+import { categoryListReducer } from "../../../entities/Category/model/slice/categoryListSlice";
+import { brandListReducer } from "../../../entities/Brand/model/slice/brandListSlice";
+import { orderReducer } from "../../../entities/Order/model/slice/orderSlice";
 
 export const store = configureStore({
   reducer: {
@@ -24,6 +25,7 @@ export const store = configureStore({
     brandList: brandListReducer,
     cart: cartReducer,
     productById: productByIdReducer,
+    order: orderReducer
   },
 });
 

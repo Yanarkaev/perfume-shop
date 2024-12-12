@@ -1,9 +1,9 @@
 .HorizontalList {
   width: 100%;
   display: flex;
-  gap: 20px;
+  gap: 30px;
   overflow-x: scroll;
-  padding-bottom: 20px;
+  padding: 35px 35px 40px 35px;
 
   & > * {
     flex: 0 0 auto;

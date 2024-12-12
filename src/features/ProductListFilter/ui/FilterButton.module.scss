@@ -1,0 +1,36 @@
+.FilterButton {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  z-index: 1;
+  display: none;
+  align-items: center;
+
+  * {
+    stroke: $white;
+    fill: none;
+  }
+
+  span {
+    transition:
+      0.3s width,
+      0.3s height;
+    width: 0px;
+    height: 0px;
+    border-radius: 50%;
+    background-color: $alert;
+    display: block;
+    margin-left: 10px;
+  }
+
+  .active {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media screen and (max-width: $laptop) {
+  .FilterButton {
+    display: flex;
+  }
+}

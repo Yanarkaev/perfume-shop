@@ -1,0 +1,137 @@
+.ProductCard {
+  max-width: 220px;
+  width: 100%;
+  background-color: $white;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  box-shadow: 0px 0px 0px 2px $shadow;
+  cursor: pointer;
+  transition:
+    0.5s box-shadow,
+    0.5s transform;
+  border-radius: 8px;
+
+  &:hover {
+    box-shadow: 0px 0px 20px 0px $shadow;
+    transform: scale(1.03);
+  }
+}
+
+.accentMarks {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  max-width: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.mark {
+  background-color: $alert;
+  padding: 2px 4px;
+  color: $white;
+  width: 100%;
+  text-align: center;
+  font-size: $fs-xs;
+
+  &:last-of-type {
+    border-radius: 0 0 0 4px;
+  }
+}
+
+.discountMark {
+  background-color: $warning;
+}
+
+.hitMark {
+  background-color: $alert;
+}
+
+.newMark {
+  background-color: $success;
+}
+.img {
+  width: 100%;
+  height: 250px;
+  margin: 0 auto;
+  border-bottom: 1px solid $main-grey-light;
+}
+
+.img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info {
+  padding: 10px;
+}
+
+// .discount {
+//   font-size: $fs-xs;
+//   color: $main-grey;
+// }
+
+.brand {
+  font-size: unset;
+  text-align: center;
+}
+
+.name {
+  margin-top: 4px;
+  text-align: center;
+  font-size: $fs-m;
+}
+
+.discount {
+  margin-top: 10px;
+  text-align: center;
+}
+
+// .priceNumber {
+//   font-size: $fs-xl;
+//   color: rgb(0, 0, 0);
+// }
+
+.btnWrapper {
+  margin-top: auto;
+  padding: 10px;
+}
+
+@media screen and (max-width: $tablet) {
+  .ProductCard {
+    &:hover {
+      box-shadow: 0px 0px 0px 2px $shadow;
+      transform: scale(1);
+    }
+
+    &:active {
+      box-shadow: 0px 0px 20px 0px $shadow;
+      transform: scale(1.03);
+    }
+  }
+}
+
+@media screen and (max-width: $wide-mobile) {
+  .img {
+    width: 100%;
+    height: 200px;
+    margin: 0 auto;
+    border-bottom: 1px solid $main-grey-light;
+  }
+
+  .brand {
+    font-size: $fs-xs;
+    font-weight: 500;
+  }
+
+  .name {
+    font-size: $fs-l;
+    font-weight: 500;
+  }
+}

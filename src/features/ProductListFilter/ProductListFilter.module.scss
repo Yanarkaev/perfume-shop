@@ -1,51 +1,135 @@
-.ProductListFilter{
-    max-width: 260px;
-    width: 100%;
-    // flex: 1;
-    // flex: 0 2 auto;
-    position: sticky;
-    top: 80px;
+.ProductListFilter {
+  max-width: 260px;
+  width: 100%;
+  position: sticky;
+  top: 120px;
 }
 
-.categories, .brands{
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 10px;
-    gap: 5px;
+.categories,
+.brands {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  gap: 5px;
 
-    max-height: 150px;
+  max-height: 150px;
+  min-height: 70px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: rgb(184, 184, 184);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #3b3b3b;
+    border-radius: 10px;
+  }
+}
+
+.filterTitle {
+  margin-top: 40px;
+  font-size: $fs-l;
+}
+
+.btns {
+  margin-top: 50px;
+  position: relative;
+}
+
+.resetBtn {
+  width: 45%;
+  opacity: 0;
+  transition:
+    0.5s opacity,
+    0.2s background,
+    0.2s color;
+  pointer-events: none;
+}
+
+.showBtn {
+  position: absolute;
+  right: 0;
+  width: 100%;
+  transition:
+    0.5s width,
+    0.2s background,
+    0.2s color;
+}
+
+.swichedBtns {
+  display: flex;
+
+  .resetBtn {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .showBtn {
+    width: 45%;
+  }
+}
+
+.pricesRange {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+
+  input {
+    max-width: 80px;
+    padding: 5px;
+    border: 1px solid gray;
+    border-radius: 4px;
+  }
+}
+
+@media screen and (max-width: $laptop) {
+  .ProductListFilter {
+    max-width: 90%;
+    max-height: 90vh;
+    right: 0px;
+    top: 50%;
+    transform: translate(100%, -50%) scale(0.5);
+    position: fixed;
+    filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    padding: 20px;
+    opacity: 0;
     overflow-y: scroll;
+    transition:
+      transform .8s,
+      filter 0.5s,
+      right 0.5s,
+      opacity 0.5s;
+    pointer-events: none;
+  }
 
-    &::-webkit-scrollbar {
-        width: 5px;
-        background-color: rgb(184, 184, 184);
-        border-radius: 10px;
-      }
-      
-      &::-webkit-scrollbar-thumb {
-        background-color: #3b3b3b;
-        border-radius: 10px;
-      }
-}
+  .showFilter {
+    transform: translate(50%, -50%) scale(1);
+    filter: blur(0);
+    right: 50%;
 
-.filterTitle{
-    margin-top: 20px;
-    font-size: $fs-l;
-}
+    opacity: 1;
+    pointer-events: all;
+  }
 
-.btn{
+  .backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    margin-top: 50px;
-}
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    pointer-events: all;
+    display: none;
+  }
 
-.pricesRange{
-    margin-top: 10px;
-    display: flex;
-    gap: 10px;
-
-    input{
-        max-width: 80px;
-        padding: 5px;
-        background-color: rgb(180, 180, 180);
-    }
+  .showBackdrop {
+    display: block;
+  }
 }

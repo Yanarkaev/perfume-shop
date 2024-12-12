@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { ChangeEvent, DetailedHTMLProps } from "react";
+import React, { ChangeEvent, DetailedHTMLProps, forwardRef } from "react";
 import s from "./Input.module.scss";
 
 interface IProps
@@ -7,24 +7,25 @@ interface IProps
     React.InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > {
+  value?: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   className?: string;
-  variant?: "default";
+  variant?: "default" | "outlined";
 }
 
-export const Input = ({
-  value,
-  onChange,
-  className = "",
-  variant = "default",
-  ...props
-}: IProps) => {
-  return (
-    <input
-      value={value}
-      onChange={onChange}
-      className={clsx(s.Input, s[variant], className)}
-      {...props}
-    />
-  );
-};
+export const Input = forwardRef<HTMLInputElement, IProps>(
+  (
+    { value, onChange, className = "", variant = "outlined", ...props },
+    ref
+  ) => {
+    return (
+      <input
+        ref={ref} // Добавляем поддержку ref
+        value={value}
+        onChange={onChange}
+        className={clsx(s.Input, s[variant], className)}
+        {...props}
+      />
+    );
+  }
+);

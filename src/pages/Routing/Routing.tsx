@@ -9,6 +9,7 @@ const ProductListPage = lazy(
 );
 const CartPage = lazy(() => import("../CartPage/CartPage"));
 const AboutPage = lazy(() => import("../AboutPage/AboutPage"));
+const OrderPage = lazy(() => import("../OrderPage/OrderPage"));
 
 enum Path {
   MainPage = "/",
@@ -18,6 +19,7 @@ enum Path {
   Contacts = "/contacts",
   About = "/about",
   Cart = "/cart",
+  Order = "/order",
 }
 
 const routeList = [
@@ -26,9 +28,11 @@ const routeList = [
   { key: "productListPage", path: Path.Perfumes, Page: ProductListPage },
   { key: "cartPage", path: Path.Cart, Page: CartPage },
   { key: "about", path: Path.About, Page: AboutPage },
+  { key: "order", path: Path.Order, Page: OrderPage },
 ];
 
 export const Routing = () => {
+
   return (
     <Suspense fallback={<h3>Loading...</h3>}>
       <Routes>

@@ -2,12 +2,6 @@ body {
   color: $main-black;
   font-weight: 400;
   background: rgb(245, 245, 245);
-}
-
-body,
-button,
-input {
   font-family: $main-text;
+  font-optical-sizing: auto;
 }
-
-

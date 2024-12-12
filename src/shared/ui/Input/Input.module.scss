@@ -1,3 +1,15 @@
 .Input{
-    color: #000;
+    color: $main-black;
+    padding: 6px 8px;
+}
+
+.outlined{
+    border: 1px solid $main-black;
+    border-radius: 6px;
+    font-size: $fs-l;
+    transition: .2s box-shadow;
+
+    &:focus{
+        box-shadow: 0 0 0px 1px $main-black;
+    }
 }

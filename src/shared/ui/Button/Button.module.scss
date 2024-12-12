@@ -1,13 +1,26 @@
 .Button {
   padding: 8px 16px;
   position: relative;
-  transition: 0.2s background-color, 0.1s transform;
+  transition:
+    0.2s background-color,
+    0.1s transform;
+  border-radius: 6px;
+  box-shadow: 0px 0px 10px 5px $shadow;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
-  &:disabled{
+  &:disabled {
     background-color: $main-grey;
+    border: 0;
+    cursor: no-drop;
+    opacity: 0.5;
+    border: 2px solid $main-grey;
+    box-shadow: none;
 
-    &:hover{
+    &:hover {
       background-color: $main-grey;
+      color: $white;
     }
   }
 }
@@ -20,22 +33,81 @@
     background-color: #00934a;
   }
 
-  &:active{
+  &:active {
     transform: scale(0.98);
     background-color: #018041;
   }
-
 }
 
-.outlined{
+.outlined {
   border: 2px solid $main-black;
   border-radius: 4px;
-
   &:hover {
     background-color: #d3d3d3;
   }
 
-  &:active{
+  &:active {
     background-color: #bababa;
+  }
+}
+
+.primary {
+  border: 2px solid $main-black;
+  background-color: $main-black;
+  color: $white;
+  transition:
+    0.2s background-color,
+    0.2s color;
+
+  &:hover {
+    background-color: $white;
+    color: $main-black;
+  }
+}
+
+@media screen and (max-width: $tablet) {
+  .Button {
+    &:hover {
+      background-color: unset;
+      color: unset;
+    }
+
+    &:active {
+      background-color: $main-grey;
+      color: $white;
+    }
+  }
+
+  .success {
+    &:hover {
+      background-color: $success;
+    }
+
+    &:active {
+      transform: scale(0.98);
+      background-color: #018041;
+    }
+  }
+
+  .primary {
+    &:hover {
+      background-color: $main-black;
+      color: $white;
+    }
+
+    &:active {
+      background-color: $white;
+      color: $main-black;
+    }
+  }
+
+  .outlined {
+    &:hover {
+      background-color: unset;
+    }
+
+    &:active {
+      background-color: #d3d3d3;
+    }
   }
 }
