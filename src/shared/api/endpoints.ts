@@ -6,6 +6,7 @@ export const endpoints = {
     list: (params: ProductListFilters) =>
       buildUrlParams<ProductListFilters>("/perfumes", params),
     byId: (id: string) => `/perfumes/perfume/${id}`,
+    names: `/perfumes/names`,
     news: `/perfumes/news`,
     hits: `/perfumes/hits`,
     discounts: `/perfumes/discounts`,

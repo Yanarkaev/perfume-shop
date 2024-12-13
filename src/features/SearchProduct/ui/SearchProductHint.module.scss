@@ -1,0 +1,38 @@
+.SearchProductHint {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  position: absolute;
+  z-index: 1;
+  background-color: $white;
+  top: 110%;
+  max-height: 250px;
+  overflow-y: scroll;
+  width: 100%;
+  padding: 0;
+  @include scroll-y;
+  box-shadow: 0 0 5px 0 $shadow;
+}
+
+.hint {
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.2s background;
+  width: 100%;
+  &:hover {
+    background-color: #efefef;
+  }
+}
+
+.notFound {
+  width: 100%;
+  padding: 10px;
+  color: $main-grey;
+}
+
+@media screen and (max-width: $small-tablet) {
+  .hint,
+  .notFound {
+    font-size: $fs-l;
+  }
+}

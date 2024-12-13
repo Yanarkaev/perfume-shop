@@ -1,5 +1,11 @@
-.SearchProduct {
+.SearchProduct{
+  display: flex;
+  flex-direction: column;
   max-width: 450px;
+  position: relative;
+}
+
+.inputWrapper {
   display: flex;
 
   input {

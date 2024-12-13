@@ -14,6 +14,7 @@ import { productByIdReducer } from "../../../pages/ProductPage/model/slice/produ
 import { categoryListReducer } from "../../../entities/Category/model/slice/categoryListSlice";
 import { brandListReducer } from "../../../entities/Brand/model/slice/brandListSlice";
 import { orderReducer } from "../../../entities/Order/model/slice/orderSlice";
+import { searchProductReducer } from "../../../features/SearchProduct/model/slice/searchProductSlice";
 
 export const store = configureStore({
   reducer: {
@@ -25,7 +26,8 @@ export const store = configureStore({
     brandList: brandListReducer,
     cart: cartReducer,
     productById: productByIdReducer,
-    order: orderReducer
+    order: orderReducer,
+    searchProduct: searchProductReducer
   },
 });
 

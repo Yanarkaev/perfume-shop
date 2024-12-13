@@ -37,6 +37,24 @@ $wide-mobile: 530px;
 $mobile: 375px;
 $small-mobile: 320px;
 
+@mixin scroll-y(
+  $width: 5px,
+  $background-color: rgb(184, 184, 184),
+  $thumb-color: #3b3b3b,
+  $border-radius: 10px
+) {
+  &::-webkit-scrollbar {
+    width: $width;
+    background-color: $background-color;
+    border-radius: $border-radius;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $thumb-color;
+    border-radius: $border-radius;
+  }
+}
+
 //
 
 $header-indent: 120px;

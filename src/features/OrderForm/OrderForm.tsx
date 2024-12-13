@@ -151,10 +151,9 @@ export const OrderForm = () => {
     dispatch(cartActions.resetCartData());
   };
 
-  // Устанавливаем данные корзины и общую сумму
   useEffect(() => {
     dispatch(cartActions.setTotalSum());
-    setValue("phoneNumber", ""); // Сброс поля номера телефона при загрузке данных
+    setValue("phoneNumber", ""); 
   }, [data, totalSum, setValue, dispatch]);
 
   return (

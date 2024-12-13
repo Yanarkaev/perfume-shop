@@ -41,10 +41,6 @@ export const ProductListFilter = () => {
     }
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   console.log(savedFilters);
-  // }, [savedFilters]);
-
   useEffect(() => {
     localStorage.setItem("filters", JSON.stringify(filters));
   }, [filters]);

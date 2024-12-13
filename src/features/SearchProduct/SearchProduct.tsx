@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent } from "react";
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import { Button, Input } from "../../shared/ui";
 import s from "./SearchProduct.module.scss";
 import clsx from "clsx";
@@ -8,6 +8,7 @@ import {
 } from "../../app/providers/storeProvider/hooks";
 import { productListActions } from "../../pages/ProductListPage/model/slice/productListSlice";
 import { getProductListSelector } from "../../pages/ProductListPage/model/selectors/product.selector";
+import { SearchProductHint } from "./ui/SearchProductHint";
 
 export const SearchProduct = () => {
   const dispatch = useAppDispatch();
@@ -15,22 +16,51 @@ export const SearchProduct = () => {
     getProductListSelector
   );
 
+  const [inputFocus, setInputFocus] = useState(false);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(productListActions.setSearchValue(e.target.value));
+    if (e.target.value.trim().length > 0) {
+      setInputFocus(true);
+    } else {
+      setInputFocus(false);
+    }
   };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     dispatch(productListActions.setFilters({ ...filters, name: searchValue }));
   };
-  
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    const hideHintPopup = (e: Event) => {
+      if (inputRef.current && !inputRef.current.contains(e.target)) {
+        setInputFocus(false);
+      }
+    };
+
+    document.addEventListener("click", hideHintPopup);
+    return () => {
+      document.removeEventListener("click", hideHintPopup);
+    };
+  }, [dispatch]);
 
   return (
     <form onSubmit={handleSubmit} className={clsx(s.SearchProduct)}>
-      <Input placeholder="Поиск" value={searchValue} onChange={handleChange} />
-      <Button variant="success" disabled={isLoading}>
-        Найти
-      </Button>
+      <div className={s.inputWrapper}>
+        <Input
+          placeholder="Поиск"
+          value={searchValue}
+          onChange={handleChange}
+          ref={inputRef}
+        />
+        <Button variant="success" disabled={isLoading}>
+          Найти
+        </Button>
+      </div>
+      <SearchProductHint visible={inputFocus} />
     </form>
   );
 };

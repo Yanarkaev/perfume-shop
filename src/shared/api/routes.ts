@@ -12,6 +12,10 @@ export const getProductList = (data: ProductListFilters) => {
   return api.get(endpoints.perfumes.list(data));
 };
 
+export const getProductNames = () => {
+  return api.get(endpoints.perfumes.names);
+};
+
 export const getDiscountProductList = () => {
   return api.get(endpoints.perfumes.discounts);
 };
