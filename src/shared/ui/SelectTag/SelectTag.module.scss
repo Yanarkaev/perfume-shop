@@ -17,7 +17,8 @@
   color: $white;
 
   &:hover {
-    background-color: rgb(154, 154, 154);
+    // background-color: rgb(154, 154, 154);
+    background-color: $main-black;
   }
 }
 
@@ -26,7 +27,8 @@
   color: $white;
 
   &:hover {
-    background-color: rgb(92, 92, 92);
+    // background-color: rgb(92, 92, 92);
+    background-color: rgb(0, 0, 0);
   }
 }
 

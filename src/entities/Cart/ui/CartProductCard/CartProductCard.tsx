@@ -5,6 +5,7 @@ import { cartActions } from "../../../../entities/Cart/model/slice/cartSlice";
 import clsx from "clsx";
 import { CartProduct } from "../../../../entities/Cart/model/types/cartShema";
 import { useNavigate } from "react-router";
+import { Path } from "../../../../shared/constants/routingPaths";
 
 interface IProps
   extends React.DetailedHTMLProps<
@@ -33,7 +34,7 @@ export const CartProductCard = ({ product }: IProps) => {
   };
 
   const handleOpenProduct = () => {
-    navigate(`/perfumes/${product._id}`);
+    navigate(`${Path.Perfume}/${product._id}`);
   };
 
   return (

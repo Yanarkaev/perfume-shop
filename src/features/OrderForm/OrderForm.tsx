@@ -111,6 +111,8 @@ import { createOrderThunk } from "../../entities/Order/model/services/createOrde
 import { Order } from "../../app/types/order";
 import { cartActions } from "../../entities/Cart/model/slice/cartSlice";
 import { useEffect } from "react";
+import { SuccessOrderModal } from "./ui/SuccessOrderModal";
+import { getOrderSelector } from "../../entities/Order/model/selectors/brand.selector";
 
 interface FormValues {
   clientName: string;
@@ -136,6 +138,7 @@ export const OrderForm = () => {
 
   const dispatch = useAppDispatch();
   const { data, totalSum } = useAppSelector(getCartSelector);
+  const { isSuccessOrder } = useAppSelector(getOrderSelector);
 
   const onSubmit: SubmitHandler<FormValues> = (formData) => {
     const orderData: Order = {
@@ -153,10 +156,12 @@ export const OrderForm = () => {
 
   useEffect(() => {
     dispatch(cartActions.setTotalSum());
-    setValue("phoneNumber", ""); 
+    setValue("phoneNumber", "");
   }, [data, totalSum, setValue, dispatch]);
 
-  return (
+  return isSuccessOrder ? (
+    <SuccessOrderModal />
+  ) : (
     <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
       <div className={s.field}>
         <span>Имя</span>
@@ -188,7 +193,7 @@ export const OrderForm = () => {
           render={({ field }) => (
             <InputMask
               {...field}
-              mask="9 (999) 999-99-99"
+              mask="8 (999) 999-99-99"
               maskChar=""
               placeholder="8 (999) 999-99-99"
               onChange={(e) => field.onChange(e.target.value)}

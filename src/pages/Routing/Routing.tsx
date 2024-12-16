@@ -1,6 +1,10 @@
 import { lazy, Suspense } from "react";
-import { Route, Routes } from "react-router";
+import { Route, Routes, Navigate } from "react-router";
 import { Layout } from "./Layout";
+import { Spinner } from "../../shared/ui";
+import { Path } from "../../shared/constants/routingPaths";
+import { useAppSelector } from "../../app/providers/storeProvider/hooks";
+import { getCartSelector } from "../../entities/Cart/model/selectors/cart.selector";
 
 const MainPage = lazy(() => import("../MainPage/MainPage"));
 const ProductPage = lazy(() => import("../ProductPage/ProductPage"));
@@ -10,17 +14,6 @@ const ProductListPage = lazy(
 const CartPage = lazy(() => import("../CartPage/CartPage"));
 const AboutPage = lazy(() => import("../AboutPage/AboutPage"));
 const OrderPage = lazy(() => import("../OrderPage/OrderPage"));
-
-enum Path {
-  MainPage = "/",
-  Perfumes = "/perfumes",
-  Perfume = "perfumes/:id",
-  Reviews = "/reviews",
-  Contacts = "/contacts",
-  About = "/about",
-  Cart = "/cart",
-  Order = "/order",
-}
 
 const routeList = [
   { key: "mainPage", path: Path.MainPage, Page: MainPage },
@@ -32,15 +25,29 @@ const routeList = [
 ];
 
 export const Routing = () => {
+  const { data } = useAppSelector(getCartSelector);
 
   return (
-    <Suspense fallback={<h3>Loading...</h3>}>
+    <Suspense fallback={<Spinner />}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          {routeList.map(({ key, path, Page }) => (
-            <Route key={key} path={path} element={<Page />} />
-          ))}
+          {routeList.map(({ key, path, Page }) => {
+            if (
+              path === Path.Order &&
+              (!data.cartData || !data.cartData.length)
+            ) {
+              return (
+                <Route
+                  key={key}
+                  path={path}
+                  element={<Navigate to={Path.Cart} />}
+                />
+              );
+            }
+            return <Route key={key} path={path} element={<Page />} />;
+          })}
         </Route>
+        <Route path="*" element={<Navigate to={Path.Perfumes} />} />
       </Routes>
     </Suspense>
   );

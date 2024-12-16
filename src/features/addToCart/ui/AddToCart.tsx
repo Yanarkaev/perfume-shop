@@ -9,6 +9,7 @@ import { cartActions } from "../../../entities/Cart/model/slice/cartSlice";
 
 import styles from "./AddToCart.module.scss";
 import clsx from "clsx";
+import { orderActions } from "../../../entities/Order/model/slice/orderSlice";
 
 export const AddToCart = ({ product }: AddToCartProps) => {
   const cart = useAppSelector(getCartSelector);
@@ -29,6 +30,7 @@ export const AddToCart = ({ product }: AddToCartProps) => {
     if (!isInCart) {
       dispatch(cartActions.setCartData({ ...product, count: 1 }));
       dispatch(cartActions.setTotalSum());
+      dispatch(orderActions.setIsSuccessOrder(false));
     }
   };
 

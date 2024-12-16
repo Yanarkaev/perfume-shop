@@ -7,3 +7,6 @@ export * from "./Title/Title";
 export * from "./Paper/Paper";
 export * from "./ProductPrice/ProductPrice";
 export * from "./OopsBlock/OopsBlock";
+export * from "./Skeleton/Skeleton";
+export * from "./Spinner/Spinner";
+export * from "./SuccessOrderModal/SuccessOrderModal";

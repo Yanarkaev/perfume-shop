@@ -18,8 +18,8 @@ export const Navbar = () => {
         <div className={styles.wideNavbar}>
           <NavbarLink to="/">LOGO</NavbarLink>
           <nav className={styles.nav}>
-            {menuLinks.map(({ name, href }) => (
-              <NavbarLink key={href} to={href}>
+            {menuLinks.map(({ name, href }, index) => (
+              <NavbarLink key={href + index} to={href}>
                 {name}
               </NavbarLink>
             ))}
@@ -37,12 +37,12 @@ export const Navbar = () => {
             {mobileMenuLinks.map(({ Icon, href }, index) => (
               <MobileNavbarLink Icon={Icon} to={href} key={index} />
             ))}
-            
+
             {/* TODO Fix CartCounter */}
 
             {/* <div className={styles.mobileNavbarCartIcon}>
-              <CartCounter /> */} 
-              <MobileNavbarLink Icon={CartIcon} to={"/cart"} />
+              <CartCounter /> */}
+            <MobileNavbarLink Icon={CartIcon} to={"/cart"} />
             {/* </div> */}
           </nav>
         </div>

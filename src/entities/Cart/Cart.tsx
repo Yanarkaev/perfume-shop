@@ -5,6 +5,7 @@ import s from "./Cart.module.scss";
 import { getCartSelector } from "./model/selectors/cart.selector";
 import { CartProductCard } from "./ui/CartProductCard/CartProductCard";
 import { OrderBlock } from "./ui/OrderBlock/OrderBlock";
+import { Path } from "../../shared/constants/routingPaths";
 
 export const Cart = () => {
   const { data } = useAppSelector(getCartSelector);
@@ -28,7 +29,7 @@ export const Cart = () => {
           text="Корзина пуста"
           className={s.oops}
           actionText="Перейти к каталогу"
-          action={() => navigate("/perfumes")}
+          action={() => navigate(Path.Perfumes)}
         />
       )}
     </div>

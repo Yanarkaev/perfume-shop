@@ -1,0 +1,71 @@
+.SuccessOrderModal {
+  padding: 10px;
+}
+
+.SuccessOrderModalInner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 400px;
+  z-index: 100;
+  opacity: 0;
+  transition: 0.2s opacity;
+  border-radius: 14px;
+}
+
+.successTitle {
+  font-size: $fs-xxl;
+  color: $success;
+  font-weight: 500;
+}
+
+.thanksTitle {
+  margin-top: 30px;
+  font-size: $fs-xl;
+}
+
+.waitDelivery {
+  margin: 10px 0 70px 0;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  pointer-events: all;
+  display: block;
+  opacity: 0;
+  transition: 0.2s opacity;
+}
+
+.showModal {
+  .backdrop {
+    opacity: 1;
+  }
+
+  .SuccessOrderModalInner {
+    opacity: 1;
+  }
+}
+
+.closeModal {
+  .backdrop {
+    opacity: 0;
+  }
+
+  .SuccessOrderModalInner {
+    opacity: 0;
+  }
+}

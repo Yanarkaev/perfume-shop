@@ -3,7 +3,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "../../app/providers/storeProvider/hooks";
-import { Button, Input, Paper, SelectTag } from "../../shared/ui";
+import { Button, Input, Paper, SelectTag, Skeleton } from "../../shared/ui";
 import s from "./ProductListFilter.module.scss";
 import { ProductListFilters } from "../../pages/ProductListPage/model/types/productListSchema";
 import { Category } from "../../app/types/category";
@@ -15,7 +15,6 @@ import { getCategoryListSelector } from "../../entities/Category/model/selectors
 import { fetchBrandListThunk } from "../../entities/Brand/model/services/fetchBrandListThunk";
 import { fetchCategoryListThunk } from "../../entities/Category/model/services/fetchCategoryListThunk";
 import { FilterButton } from "./ui/FilterButton";
-import { fetchProductListThunk } from "../../pages/ProductListPage/model/services/fetchProductListThunk";
 import clsx from "clsx";
 
 export const ProductListFilter = () => {
@@ -28,11 +27,12 @@ export const ProductListFilter = () => {
     priceMax: "",
     priceMin: "",
   });
+  // const [cashFilters, setCashFilters] = useState('')
 
   const [showFilter, setShowFilter] = useState(false);
-  const savedFilters = JSON.parse(localStorage.getItem("filters") || "{}");
 
   useEffect(() => {
+    const savedFilters = JSON.parse(localStorage.getItem("filters") || "{}");
     dispatch(fetchBrandListThunk());
     dispatch(fetchCategoryListThunk());
 
@@ -41,9 +41,18 @@ export const ProductListFilter = () => {
     }
   }, [dispatch]);
 
+  // useEffect(() => {
+  //   localStorage.setItem("filters", JSON.stringify(filters));
+  // }, [filters]);
+
   useEffect(() => {
-    localStorage.setItem("filters", JSON.stringify(filters));
-  }, [filters]);
+    const bodyElement = document.body;
+    if (showFilter) {
+      bodyElement.classList.add("unscrollable");
+    } else {
+      bodyElement.classList.remove("unscrollable");
+    }
+  }, [showFilter]);
 
   const handlePriceFilter = (e: ChangeEvent<HTMLInputElement>) => {
     setFilters({
@@ -73,16 +82,26 @@ export const ProductListFilter = () => {
   };
 
   const handleSetQueryFilters = () => {
-    dispatch(
-      productListActions.setFilters({
-        ...productListSelector.filters,
-        ...filters,
-        name: productListSelector.searchValue,
-        priceMin: filters.priceMin || undefined,
-        priceMax: filters.priceMax || undefined,
-      })
-    );
-    setShowFilter(false);
+    const currentFilters = JSON.stringify(filters);
+    const cashedFilters = localStorage.getItem("filters");
+
+    if (currentFilters !== cashedFilters) {
+      dispatch(
+        productListActions.setFilters({
+          ...productListSelector.filters,
+          ...filters,
+          name: productListSelector.searchValue,
+          priceMin: filters.priceMin || undefined,
+          priceMax: filters.priceMax || undefined,
+        })
+      );
+    }
+
+    localStorage.setItem("filters", JSON.stringify(filters));
+
+    if (showFilter) {
+      setShowFilter(false);
+    }
   };
 
   const handleResetFilters = () => {
@@ -107,76 +126,131 @@ export const ProductListFilter = () => {
 
   return (
     <>
-      {/* TODO Hide scroll on opened filter */}
       <div
         className={clsx(s.backdrop, { [s.showBackdrop]: showFilter })}
         onClick={() => setShowFilter(false)}
       ></div>
-      <Paper
-        className={clsx(s.ProductListFilter, { [s.showFilter]: showFilter })}
-      >
-        <div className={s.filterTitile}>Цена</div>
-        <div className={s.pricesRange}>
-          <Input
-            placeholder="От"
-            value={filters.priceMin}
-            name="priceMin"
-            onChange={handlePriceFilter}
-          />
-          <Input
-            placeholder="До"
-            value={filters.priceMax}
-            name="priceMax"
-            onChange={handlePriceFilter}
-          />
-        </div>
 
-        <div className={s.filterTitle}>Семейства</div>
-        <div className={s.categories}>
-          {categoryList.data?.map((el) => (
-            <SelectTag
-              key={el._id}
-              text={el.name}
-              selected={filters.categoryIds?.includes(el._id)}
-              onClick={() => handleCategoriesFilter(el)}
-              counter={el.total}
-            />
-          ))}
-        </div>
+      <>
+        <Paper
+          className={clsx(s.ProductListFilter, {
+            [s.showFilter]: showFilter,
+          })}
+        >
+          {brandList.isLoading || categoryList.isLoading ? (
+            <Skeleton className={s.filterSkeleton} />
+          ) : (
+            <>
+              <div className={s.filterTitile}>Цена</div>
+              <div className={s.pricesRange}>
+                <Input
+                  placeholder="От"
+                  value={filters.priceMin}
+                  name="priceMin"
+                  onChange={handlePriceFilter}
+                />
+                <Input
+                  placeholder="До"
+                  value={filters.priceMax}
+                  name="priceMax"
+                  onChange={handlePriceFilter}
+                />
+              </div>
 
-        <div className={s.filterTitle}>Бренды</div>
-        <div className={s.brands}>
-          {brandList.data?.map((el) => (
-            <SelectTag
-              key={el._id}
-              text={el.name}
-              selected={filters.brandIds?.includes(el._id)}
-              onClick={() => handleBrandsFilter(el)}
-              counter={el.total}
-            />
-          ))}
-        </div>
+              <div className={s.filterTitle}>Семейства</div>
+              <div className={s.categories}>
+                {categoryList.data?.map((el) => (
+                  <SelectTag
+                    key={el._id}
+                    text={el.name}
+                    selected={filters.categoryIds?.includes(el._id)}
+                    onClick={() => handleCategoriesFilter(el)}
+                    counter={el.total}
+                  />
+                ))}
+                {categoryList.data?.map((el) => (
+                  <SelectTag
+                    key={el._id}
+                    text={el.name}
+                    selected={filters.categoryIds?.includes(el._id)}
+                    onClick={() => handleCategoriesFilter(el)}
+                    counter={el.total}
+                  />
+                ))}
+                {categoryList.data?.map((el) => (
+                  <SelectTag
+                    key={el._id}
+                    text={el.name}
+                    selected={filters.categoryIds?.includes(el._id)}
+                    onClick={() => handleCategoriesFilter(el)}
+                    counter={el.total}
+                  />
+                ))}
+                {categoryList.data?.map((el) => (
+                  <SelectTag
+                    key={el._id}
+                    text={el.name}
+                    selected={filters.categoryIds?.includes(el._id)}
+                    onClick={() => handleCategoriesFilter(el)}
+                    counter={el.total}
+                  />
+                ))}
+              </div>
 
-        <div className={clsx(s.btns, { [s.swichedBtns]: isFilters() })}>
-          <Button
-            className={clsx(s.btn, s.resetBtn)}
-            onClick={handleResetFilters}
-          >
-            Сбросить
-          </Button>
-          <Button
-            className={clsx(s.btn, s.showBtn)}
-            onClick={handleSetQueryFilters}
-          >
-            Показать
-          </Button>
-        </div>
-      </Paper>
+              <div className={s.filterTitle}>Бренды</div>
+              <div className={s.brands}>
+                {brandList.data?.map((el) => (
+                  <SelectTag
+                    key={el._id}
+                    text={el.name}
+                    selected={filters.brandIds?.includes(el._id)}
+                    onClick={() => handleBrandsFilter(el)}
+                    counter={el.total}
+                  />
+                ))}
+                {brandList.data?.map((el) => (
+                  <SelectTag
+                    key={el._id}
+                    text={el.name}
+                    selected={filters.brandIds?.includes(el._id)}
+                    onClick={() => handleBrandsFilter(el)}
+                    counter={el.total}
+                  />
+                ))}
+                {brandList.data?.map((el) => (
+                  <SelectTag
+                    key={el._id}
+                    text={el.name}
+                    selected={filters.brandIds?.includes(el._id)}
+                    onClick={() => handleBrandsFilter(el)}
+                    counter={el.total}
+                  />
+                ))}
+              </div>
 
-      <FilterButton
-        active={isFilters()}
-        onClick={() => setShowFilter((prev) => !prev)}
-      />
+              <div className={clsx(s.btns, { [s.swichedBtns]: isFilters() })}>
+                <Button
+                  className={clsx(s.btn, s.resetBtn)}
+                  onClick={handleResetFilters}
+                >
+                  Сбросить
+                </Button>
+                <Button
+                  className={clsx(s.btn, s.showBtn)}
+                  onClick={handleSetQueryFilters}
+                >
+                  Показать
+                </Button>
+              </div>
+            </>
+          )}
+        </Paper>
+
+        <FilterButton
+          active={isFilters()}
+          onClick={() => setShowFilter((prev) => !prev)}
+        />
+      </>
     </>
   );
 };

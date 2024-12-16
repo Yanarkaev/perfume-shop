@@ -11,7 +11,19 @@ import { fetchProductNamesThunk } from "../model/services/fetchProductNames";
 import { Paper } from "../../../shared/ui";
 import { productListActions } from "../../../pages/ProductListPage/model/slice/productListSlice";
 
-export const SearchProductHint = ({ visible }: { visible: boolean }) => {
+interface IProps {
+  visible: boolean;
+  setPrevInputValue: (el: string) => void;
+  prevHint: string;
+  setPrevHint: (el: string) => void;
+}
+
+export const SearchProductHint = ({
+  visible,
+  setPrevInputValue,
+  prevHint,
+  setPrevHint,
+}: IProps) => {
   const dispatch = useAppDispatch();
   const { filters, searchValue } = useAppSelector(getProductListSelector);
 
@@ -53,17 +65,28 @@ export const SearchProductHint = ({ visible }: { visible: boolean }) => {
 
   const applyHint = (el: string) => {
     dispatch(productListActions.setSearchValue(el));
-    dispatch(productListActions.setFilters({ ...filters, name: el }));
+    if (prevHint !== el) {
+      dispatch(productListActions.setFilters({ ...filters, name: el }));
+
+      setPrevHint(el);
+      setPrevInputValue(el);
+    }
   };
+
+  console.log(prevHint);
 
   return (
     visible && (
       <Paper className={s.SearchProductHint}>
-        {hintData.length ? hintData?.map((el) => (
-          <div key={el} className={s.hint} onClick={() => applyHint(el)}>
-            {el}
-          </div>
-        )): <div className={s.notFound}>Ничего не найдено</div>}
+        {hintData.length ? (
+          hintData?.map((el) => (
+            <div key={el} className={s.hint} onClick={() => applyHint(el)}>
+              {el}
+            </div>
+          ))
+        ) : (
+          <div className={s.notFound}>Ничего не найдено</div>
+        )}
       </Paper>
     )
   );

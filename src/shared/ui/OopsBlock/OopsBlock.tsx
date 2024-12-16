@@ -3,7 +3,7 @@ import s from "./OopsBlock.module.scss";
 import clsx from "clsx";
 import { Button } from "../Button/Button";
 
-export interface IProps
+interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   text: string;
   action?: () => void;

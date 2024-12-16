@@ -17,6 +17,8 @@ export const SearchProduct = () => {
   );
 
   const [inputFocus, setInputFocus] = useState(false);
+  const [prevInputValue, setPrevInputValue] = useState("");
+  const [prevHint, setPrevHint] = useState<string>("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(productListActions.setSearchValue(e.target.value));
@@ -27,12 +29,18 @@ export const SearchProduct = () => {
     }
   };
 
+  const inputRef = useRef(null);
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    dispatch(productListActions.setFilters({ ...filters, name: searchValue }));
+    if (searchValue !== prevInputValue) {
+      dispatch(
+        productListActions.setFilters({ ...filters, name: searchValue })
+      );
+      setPrevHint(searchValue);
+      setPrevInputValue(searchValue);
+    }
   };
-
-  const inputRef = useRef(null);
 
   useEffect(() => {
     const hideHintPopup = (e: Event) => {
@@ -60,7 +68,12 @@ export const SearchProduct = () => {
           Найти
         </Button>
       </div>
-      <SearchProductHint visible={inputFocus} />
+      <SearchProductHint
+        visible={inputFocus}
+        setPrevInputValue={setPrevInputValue}
+        prevHint={prevHint}
+        setPrevHint={setPrevHint}
+      />
     </form>
   );
 };

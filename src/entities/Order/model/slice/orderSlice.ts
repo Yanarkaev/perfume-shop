@@ -4,6 +4,7 @@ import { createOrderThunk } from "../services/createOrderThunk";
 
 const initialState: OrderSchema = {
   data: null,
+  isSuccessOrder: false,
   isLoading: false,
   error: undefined,
 };
@@ -11,18 +12,24 @@ const initialState: OrderSchema = {
 export const orderSlice = createSlice({
   name: "order",
   initialState,
-  reducers: {},
+  reducers: {
+    setIsSuccessOrder: (state, action) => {
+      state.isSuccessOrder = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(createOrderThunk.pending, (state) => {
         state.isLoading = true;
         state.error = undefined;
+        state.isSuccessOrder = false;
       })
-      .addCase(createOrderThunk.fulfilled, () => {
-        console.log("Заказ оформлен");
+      .addCase(createOrderThunk.fulfilled, (state) => {
+        state.isSuccessOrder = true;
       })
       .addCase(createOrderThunk.rejected, (state, action) => {
         state.isLoading = false;
+        state.isSuccessOrder = false;
         state.error = action.payload;
       });
   },

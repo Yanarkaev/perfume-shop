@@ -1,4 +1,9 @@
-import { Container, HorizontalList, Paper } from "../../../../shared/ui";
+import {
+  Container,
+  HorizontalList,
+  Paper,
+  Skeleton,
+} from "../../../../shared/ui";
 import { ProductCard } from "../../../../entities/Product/ProductCard";
 import styles from "./MainPageProductsList.module.scss";
 import {
@@ -37,27 +42,15 @@ export const MainPageProductsList = () => {
 
         <Paper className={styles.section}>
           <HorizontalList>
-            {discountProductListSelector.data?.map((item) => {
-              return <ProductCard key={item._id} product={item} />;
-            })}
-            {discountProductListSelector.data?.map((item) => {
-              return <ProductCard key={item._id} product={item} />;
-            })}
-            {discountProductListSelector.data?.map((item) => {
-              return <ProductCard key={item._id} product={item} />;
-            })}{" "}
-            {discountProductListSelector.data?.map((item) => {
-              return <ProductCard key={item._id} product={item} />;
-            })}{" "}
-            {discountProductListSelector.data?.map((item) => {
-              return <ProductCard key={item._id} product={item} />;
-            })}{" "}
-            {discountProductListSelector.data?.map((item) => {
-              return <ProductCard key={item._id} product={item} />;
-            })}{" "}
-            {discountProductListSelector.data?.map((item) => {
-              return <ProductCard key={item._id} product={item} />;
-            })}
+            {discountProductListSelector.isLoading
+              ? Array(12)
+                  .fill(1)
+                  .map((_, index) => (
+                    <Skeleton key={index} className={styles.cardSkeleton} />
+                  ))
+              : discountProductListSelector.data?.map((item) => {
+                  return <ProductCard key={item._id} product={item} />;
+                })}
           </HorizontalList>
         </Paper>
 
@@ -65,9 +58,15 @@ export const MainPageProductsList = () => {
 
         <Paper className={styles.section}>
           <HorizontalList>
-            {newsProductListSelector.data?.map((item) => {
-              return <ProductCard key={item._id} product={item} />;
-            })}
+            {newsProductListSelector.isLoading
+              ? Array(12)
+                  .fill(1)
+                  .map((_, index) => (
+                    <Skeleton key={index} className={styles.cardSkeleton} />
+                  ))
+              : newsProductListSelector.data?.map((item) => {
+                  return <ProductCard key={item._id} product={item} />;
+                })}
           </HorizontalList>
         </Paper>
 
@@ -75,21 +74,15 @@ export const MainPageProductsList = () => {
 
         <Paper className={styles.section}>
           <HorizontalList>
-            {hitsProductListSelector.data?.map((item) => {
-              return <ProductCard key={item._id} product={item} />;
-            })}
-            {hitsProductListSelector.data?.map((item) => {
-              return <ProductCard key={item._id} product={item} />;
-            })}
-            {hitsProductListSelector.data?.map((item) => {
-              return <ProductCard key={item._id} product={item} />;
-            })}
-            {hitsProductListSelector.data?.map((item) => {
-              return <ProductCard key={item._id} product={item} />;
-            })}
-            {hitsProductListSelector.data?.map((item) => {
-              return <ProductCard key={item._id} product={item} />;
-            })}
+            {hitsProductListSelector.isLoading
+              ? Array(12)
+                  .fill(1)
+                  .map((_, index) => (
+                    <Skeleton key={index} className={styles.cardSkeleton} />
+                  ))
+              : hitsProductListSelector.data?.map((item) => {
+                  return <ProductCard key={item._id} product={item} />;
+                })}
           </HorizontalList>
         </Paper>
       </section>
