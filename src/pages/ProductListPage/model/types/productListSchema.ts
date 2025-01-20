@@ -14,14 +14,20 @@ export interface ProductListFilters {
   priceMin?: string;
   priceMax?: string;
   brandIds?: string[];
+  limit?: number;
+  page?: number;
+}
+
+export interface Pagination {
+  page?: number;
+  limit?: number;
 }
 
 export interface ProductListSchema {
   data: ProductListData | null;
   isLoading: boolean;
   error: string | undefined;
-  page: number;
-  limit: number;
+  pagination: Pagination;
   filters: ProductListFilters;
-  searchValue: string
+  searchValue: string;
 }

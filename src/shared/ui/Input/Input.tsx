@@ -15,12 +15,20 @@ interface IProps
 
 export const Input = forwardRef<HTMLInputElement, IProps>(
   (
-    { value, onChange, onFocus, onBlur, className = "", variant = "outlined", ...props },
+    {
+      value,
+      onChange,
+      onFocus,
+      onBlur,
+      className = "",
+      variant = "outlined",
+      ...props
+    },
     ref
   ) => {
     return (
       <input
-        ref={ref} // Добавляем поддержку ref
+        ref={ref}
         value={value}
         onChange={onChange}
         onFocus={onFocus}

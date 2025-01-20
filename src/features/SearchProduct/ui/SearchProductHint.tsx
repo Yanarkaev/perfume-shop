@@ -73,8 +73,6 @@ export const SearchProductHint = ({
     }
   };
 
-  console.log(prevHint);
-
   return (
     visible && (
       <Paper className={s.SearchProductHint}>

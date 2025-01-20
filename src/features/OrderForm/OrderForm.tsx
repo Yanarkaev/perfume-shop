@@ -113,6 +113,7 @@ import { cartActions } from "../../entities/Cart/model/slice/cartSlice";
 import { useEffect } from "react";
 import { SuccessOrderModal } from "./ui/SuccessOrderModal";
 import { getOrderSelector } from "../../entities/Order/model/selectors/brand.selector";
+import clsx from "clsx";
 
 interface FormValues {
   clientName: string;
@@ -163,7 +164,7 @@ export const OrderForm = () => {
     <SuccessOrderModal />
   ) : (
     <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
-      <div className={s.field}>
+      <div className={clsx(s.field, { [s.errorField]: errors.clientName })}>
         <span>Имя</span>
         <Controller
           name="clientName"
@@ -178,7 +179,7 @@ export const OrderForm = () => {
         )}
       </div>
 
-      <div className={s.field}>
+      <div className={clsx(s.field, { [s.errorField]: errors.phoneNumber })}>
         <span>Номер телефона</span>
         <Controller
           name="phoneNumber"
@@ -187,7 +188,7 @@ export const OrderForm = () => {
             required: "Номер телефона обязателен",
             pattern: {
               value: /^8 \(\d{3}\) \d{3}-\d{2}-\d{2}$/,
-              message: "Некорректный формат номера телефона",
+              message: "Некорректный формат",
             },
           }}
           render={({ field }) => (
@@ -207,8 +208,8 @@ export const OrderForm = () => {
         )}
       </div>
 
-      <div className={s.field}>
-        <span>Адрес доставки</span>
+      <div className={clsx(s.field, { [s.errorField]: errors.city })}>
+        <span>Город</span>
         <Controller
           name="city"
           control={control}
@@ -218,6 +219,9 @@ export const OrderForm = () => {
           )}
         />
         {errors.city && <p className={s.error}>{errors.city.message}</p>}
+      </div>
+      <div className={clsx(s.field, { [s.errorField]: errors.address })}>
+        <span>Адрес доставки</span>
         <Controller
           name="address"
           control={control}

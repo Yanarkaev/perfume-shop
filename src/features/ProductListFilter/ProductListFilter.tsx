@@ -26,8 +26,12 @@ export const ProductListFilter = () => {
   const [filters, setFilters] = useState<ProductListFilters>({
     priceMax: "",
     priceMin: "",
+    limit: 3,
+    page: 1,
   });
   // const [cashFilters, setCashFilters] = useState('')
+
+  console.log(filters);
 
   const [showFilter, setShowFilter] = useState(false);
 
@@ -40,10 +44,6 @@ export const ProductListFilter = () => {
       setFilters(savedFilters);
     }
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   localStorage.setItem("filters", JSON.stringify(filters));
-  // }, [filters]);
 
   useEffect(() => {
     const bodyElement = document.body;
@@ -93,6 +93,8 @@ export const ProductListFilter = () => {
           name: productListSelector.searchValue,
           priceMin: filters.priceMin || undefined,
           priceMax: filters.priceMax || undefined,
+          limit: filters.limit,
+          page: filters.page,
         })
       );
     }

@@ -12,7 +12,7 @@
 
   &:disabled {
     background-color: $main-grey;
-    border: 0;
+    // border: 0;
     cursor: no-drop;
     opacity: 0.5;
     border: 2px solid $main-grey;
@@ -27,15 +27,19 @@
 
 .success {
   background-color: $success;
+  border: 2px solid $success;
+
   color: $white;
 
   &:hover {
     background-color: #00934a;
+    border: 2px solid #00934a;
   }
 
   &:active {
     transform: scale(0.98);
     background-color: #018041;
+    border: 2px solid #00934a;
   }
 }
 

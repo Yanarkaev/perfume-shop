@@ -8,40 +8,47 @@ import s from "./ProductList.module.scss";
 import { fetchProductListThunk } from "../../model/services/fetchProductListThunk";
 import { ProductCard } from "../../../../entities/Product/ProductCard";
 import { OopsBlock, Paper, Skeleton } from "../../../../shared/ui";
+import { useScrollOnBottom } from "../../../../shared/lib/hooks/useScrollOnBottom";
+import { Pagination } from "../../../../features/Pagination/Pagination";
 
 export const ProductList = () => {
   const dispatch = useAppDispatch();
-  const { data, filters, isLoading } = useAppSelector(getProductListSelector);
+  const { data, filters, isLoading, pagination } = useAppSelector(
+    getProductListSelector
+  );
+
+  console.log(filters);
 
   useEffect(() => {
-    dispatch(fetchProductListThunk(filters));
+    dispatch(
+      fetchProductListThunk({
+        ...filters,
+        limit: pagination.limit,
+        page: pagination.page,
+      })
+    );
   }, [dispatch, filters]);
 
-  // return data?.list?.length ? (
-  //   <Paper type="section" className={s.ProductList}>
-  //     {data?.list?.map((el) => (
-  //       <ProductCard className={s.product} key={el._id} product={el} />
-  //     ))}
-  //   </Paper>
-  // ) : (
-  //   <OopsBlock text="Ничего не найдено" className={s.oops} />
-  // );
+  // useScrollOnBottom(() => console.log("scrollll"), 0, 1000);
 
   return (
-    <Paper type="section" className={s.ProductList}>
-      {isLoading ? (
-        Array(12)
-          .fill(1)
-          .map((_, index) => (
-            <Skeleton key={index} className={s.cardSkeleton} />
+    <div className={s.ProductListWrapper}>
+      <Paper type="section" className={s.ProductList}>
+        {isLoading ? (
+          Array(12)
+            .fill(1)
+            .map((_, index) => (
+              <Skeleton key={index} className={s.cardSkeleton} />
+            ))
+        ) : data?.list.length ? (
+          data?.list?.map((el) => (
+            <ProductCard className={s.product} key={el._id} product={el} />
           ))
-      ) : data?.list.length ? (
-        data?.list?.map((el) => (
-          <ProductCard className={s.product} key={el._id} product={el} />
-        ))
-      ) : (
-        <OopsBlock text="Ничего не найдено" className={s.oops} />
-      )}
-    </Paper>
+        ) : (
+          <OopsBlock text="Ничего не найдено" className={s.oops} />
+        )}
+      </Paper>
+      <Pagination />
+    </div>
   );
 };

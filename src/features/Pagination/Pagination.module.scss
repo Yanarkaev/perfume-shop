@@ -1,0 +1,13 @@
+.Pagination{
+    margin-top: 20px;
+    display: flex;
+    gap: 5px;
+}
+
+.currentPage{
+    cursor: default;
+
+    &:active{
+        transform: unset;
+    }
+}
