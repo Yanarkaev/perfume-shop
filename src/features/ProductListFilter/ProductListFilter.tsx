@@ -31,7 +31,7 @@ export const ProductListFilter = () => {
   });
   // const [cashFilters, setCashFilters] = useState('')
 
-  console.log(filters);
+  // console.log(filters);
 
   const [showFilter, setShowFilter] = useState(false);
 

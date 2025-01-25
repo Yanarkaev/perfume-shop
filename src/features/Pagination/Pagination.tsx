@@ -33,13 +33,11 @@ export const Pagination = () => {
             el === page ||
             el === data.totalPages
         );
+
       // setCurrentPage(+data?.currentPage);
       setVisiblePages(pages);
     }
   }, [data]);
-
-  console.log(data);
-  
 
   useEffect(() => {
     if (page) {
@@ -65,27 +63,27 @@ export const Pagination = () => {
     dispatch(productListActions.setPaginationPage(n));
   };
 
-  return (
-    data?.totalPages && (
-      <div className={s.Pagination}>
-        <Button onClick={handlePrevPage} disabled={page === 1}>
-          {"<"}
-        </Button>
+  return data?.totalPages ? (
+    <div className={s.Pagination}>
+      <Button onClick={handlePrevPage} disabled={page === 1}>
+        {"<"}
+      </Button>
 
-        {visiblePages.map((el) => (
-          <Button
-            key={el}
-            variant={el === page ? "success" : "primary"}
-            className={clsx({ [s.currentPage]: el === page })}
-            onClick={() => setPage(el)}
-          >
-            {el}
-          </Button>
-        ))}
-        <Button onClick={handleNextPage} disabled={page === data.totalPages}>
-          {">"}
+      {visiblePages.map((el) => (
+        <Button
+          key={el}
+          variant={el === page ? "success" : "primary"}
+          className={clsx({ [s.currentPage]: el === page })}
+          onClick={() => setPage(el)}
+        >
+          {el}
         </Button>
-      </div>
-    )
+      ))}
+      <Button onClick={handleNextPage} disabled={page === data.totalPages}>
+        {">"}
+      </Button>
+    </div>
+  ) : (
+    ""
   );
 };

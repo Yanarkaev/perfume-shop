@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import {
   useAppDispatch,
   useAppSelector,
@@ -10,14 +10,14 @@ import { ProductCard } from "../../../../entities/Product/ProductCard";
 import { OopsBlock, Paper, Skeleton } from "../../../../shared/ui";
 import { useScrollOnBottom } from "../../../../shared/lib/hooks/useScrollOnBottom";
 import { Pagination } from "../../../../features/Pagination/Pagination";
+import { productListActions } from "../../model/slice/productListSlice";
 
 export const ProductList = () => {
   const dispatch = useAppDispatch();
+
   const { data, filters, isLoading, pagination } = useAppSelector(
     getProductListSelector
   );
-
-  console.log(filters);
 
   useEffect(() => {
     dispatch(
@@ -29,7 +29,15 @@ export const ProductList = () => {
     );
   }, [dispatch, filters]);
 
-  // useScrollOnBottom(() => console.log("scrollll"), 0, 1000);
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    dispatch(productListActions.setPaginationPage(1));
+  }, [filters]);
 
   return (
     <div className={s.ProductListWrapper}>

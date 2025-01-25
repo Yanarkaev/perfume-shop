@@ -51,6 +51,14 @@ export const productListSlice = createSlice({
         );
       } else if (typeof action.payload === "number") {
         state.pagination.page = action.payload;
+
+        localStorage.setItem(
+          "pagination",
+          JSON.stringify({
+            limit: state.pagination.limit,
+            page: action.payload,
+          })
+        );
       }
     },
 
